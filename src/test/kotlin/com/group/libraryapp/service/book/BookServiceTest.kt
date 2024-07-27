@@ -84,7 +84,7 @@ class BookServiceTest
 
         @Test
         @DisplayName("책 반납이 정상 동작한다")
-        fun returnBookTest()  {
+        fun returnBookTest() {
             // given
             bookRepository.save(Book("이상한 나라의 엘리스"))
             val savedUser = userRepository.save(User("장호진", null))

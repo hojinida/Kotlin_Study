@@ -42,8 +42,8 @@ public class User {
     this.name = name;
   }
 
-  public void loanBook(Book book) {
-    this.userLoanHistories.add(new UserLoanHistory(this, book.getName(), false));
+  public void loanBook(Book javaBook) {
+    this.userLoanHistories.add(new UserLoanHistory(this, javaBook.getName(), false));
   }
 
   public void returnBook(String bookName) {

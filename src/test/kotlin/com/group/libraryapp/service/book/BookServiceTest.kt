@@ -4,7 +4,7 @@ import com.group.libraryapp.domain.book.Book
 import com.group.libraryapp.domain.book.BookRepository
 import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
-import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory
+import com.group.libraryapp.domain.user.loanhisotry.UserLoanHistory
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistoryRepository
 import com.group.libraryapp.dto.book.request.BookLoanRequest
 import com.group.libraryapp.dto.book.request.BookRequest
@@ -52,7 +52,13 @@ class BookServiceTest
         fun loanBookTest() {
             // given
             bookRepository.save(Book("이상한 나라의 엘리스"))
-            val savedUser = userRepository.save(User("장호진", null))
+            val savedUser =
+                userRepository.save(
+                    User(
+                        "장호진",
+                        null,
+                    ),
+                )
             val request = BookLoanRequest("장호진", "이상한 나라의 엘리스")
             // when
             bookService.loanBook(request)
@@ -70,8 +76,20 @@ class BookServiceTest
         fun loanBookFailTest() {
             // given
             bookRepository.save(Book("이상한 나라의 엘리스"))
-            val savedUser = userRepository.save(User("장호진", null))
-            userLoanHistoryRepository.save(UserLoanHistory(savedUser, "이상한 나라의 엘리스", false))
+            val savedUser =
+                userRepository.save(
+                    User(
+                        "장호진",
+                        null,
+                    ),
+                )
+            userLoanHistoryRepository.save(
+                UserLoanHistory(
+                    savedUser,
+                    "이상한 나라의 엘리스",
+                    false,
+                ),
+            )
             val request = BookLoanRequest("장호진", "이상한 나라의 엘리스")
 
             // when & then
@@ -87,8 +105,20 @@ class BookServiceTest
         fun returnBookTest() {
             // given
             bookRepository.save(Book("이상한 나라의 엘리스"))
-            val savedUser = userRepository.save(User("장호진", null))
-            userLoanHistoryRepository.save(UserLoanHistory(savedUser, "이상한 나라의 엘리스", false))
+            val savedUser =
+                userRepository.save(
+                    User(
+                        "장호진",
+                        null,
+                    ),
+                )
+            userLoanHistoryRepository.save(
+                UserLoanHistory(
+                    savedUser,
+                    "이상한 나라의 엘리스",
+                    false,
+                ),
+            )
             val request = BookReturnRequest("장호진", "이상한 나라의 엘리스")
 
             // when

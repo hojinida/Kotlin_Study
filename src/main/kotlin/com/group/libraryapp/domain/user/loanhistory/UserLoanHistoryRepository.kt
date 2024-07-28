@@ -9,4 +9,6 @@ interface UserLoanHistoryRepository : JpaRepository<UserLoanHistory, Long> {
     ): UserLoanHistory?
 
     fun findAllByStatus(status: UserLoanStatus): List<UserLoanHistory>
+
+    fun countByStatus(status: UserLoanStatus): Long
 }

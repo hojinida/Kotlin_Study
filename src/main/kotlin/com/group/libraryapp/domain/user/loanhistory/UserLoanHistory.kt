@@ -12,12 +12,26 @@ class UserLoanHistory(
     @ManyToOne
     val user: User,
     val bookName: String,
-    var isReturn: Boolean,
+    var status: UserLoanStatus,
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 ) {
     fun doReturn() {
-        this.isReturn = true
+        this.status = UserLoanStatus.RETURNED
+    }
+
+    companion object {
+        fun fixture(
+            user: User,
+            bookName: String = "이상한 나라의 엘리스",
+            status: UserLoanStatus = UserLoanStatus.LOANED,
+            id: Long? = null,
+        ): UserLoanHistory =
+            UserLoanHistory(
+                user = user,
+                bookName = bookName,
+                status = status,
+            )
     }
 }

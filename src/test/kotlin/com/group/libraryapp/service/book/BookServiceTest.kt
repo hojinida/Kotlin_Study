@@ -36,7 +36,7 @@ class BookServiceTest
         @DisplayName("책 등록이 정상 동작한다.")
         fun saveBookTest() {
             // given
-            val request = BookRequest("이상한 나라의 엘리스")
+            val request = BookRequest("이상한 나라의 엘리스", "COMPUTER")
 
             // when
             bookService.saveBook(request)
@@ -51,7 +51,7 @@ class BookServiceTest
         @DisplayName("책 대출이 정상 동작한다.")
         fun loanBookTest() {
             // given
-            bookRepository.save(Book("이상한 나라의 엘리스"))
+            bookRepository.save(Book.fixture("이상한 나라의 엘리스"))
             val savedUser =
                 userRepository.save(
                     User(
@@ -75,7 +75,7 @@ class BookServiceTest
         @DisplayName("책이 이미 대출되어 있다면, 신규 대출이 실패한다")
         fun loanBookFailTest() {
             // given
-            bookRepository.save(Book("이상한 나라의 엘리스"))
+            bookRepository.save(Book.fixture("이상한 나라의 엘리스"))
             val savedUser =
                 userRepository.save(
                     User(
@@ -104,7 +104,7 @@ class BookServiceTest
         @DisplayName("책 반납이 정상 동작한다")
         fun returnBookTest() {
             // given
-            bookRepository.save(Book("이상한 나라의 엘리스"))
+            bookRepository.save(Book.fixture("이상한 나라의 엘리스"))
             val savedUser =
                 userRepository.save(
                     User(
